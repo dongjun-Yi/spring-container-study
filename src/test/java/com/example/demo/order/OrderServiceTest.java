@@ -1,15 +1,11 @@
 package com.example.demo.order;
 
 import com.example.demo.config.AppConfig;
-import com.example.demo.discount.DiscountPolicy;
-import com.example.demo.discount.FixDiscountPolicy;
 import com.example.demo.member.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderServiceTest {
 
