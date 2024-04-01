@@ -1,9 +1,9 @@
 package com.example.demo.container;
 
 import com.example.demo.config.AppConfig;
+import com.example.demo.config.SpringAppConfig;
 import com.example.demo.member.MemberService;
 import com.example.demo.singleton.SingletonService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -28,5 +28,24 @@ public class SingletonTest {
         SingletonService singletonService2 = SingletonService.getInstance();
 
         assertThat(singletonService1).isEqualTo(singletonService2);
+    }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    void springContainer() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        assertThat(memberService1).isSameAs(memberService2);
+    }
+
+    @Test
+    @DisplayName("Spring Configuration 테스트")
+    void configuration() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+        SpringAppConfig bean = ac.getBean(SpringAppConfig.class);
+
+        System.out.println(bean.getClass());
     }
 }
